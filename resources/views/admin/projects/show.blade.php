@@ -1,34 +1,70 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
-        <div class="row my-3">
-            <div class="d-flex justify-content-center align-items-center">
-                <div class="card" style="width: 18rem;">
-                    @if ($project->image != null)
-                        <img src=" {{ asset('/storage/' . $project->image) }}" alt="{{ $project->name }}" class="card-img-top">
-                    @else
-                        <img src=" {{ asset('/img/sfondo.jpg') }}" alt="{{ $project->name }}" class="card-img-top">
-                    @endif
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $project->name }}</h5>
-                        <p class="card-text">{{ $project->description }}</p>
-                        <p class="card-text">Tipo: {{ $project->type ? $project->type->name : 'Nessuno' }}</p>
-                        <p>
-                            Tecnologia:
+    <section class="px-3" id="show">
+        <div class="container">
+            <div class="row my-2">
+                <div class="col-12 mt-4">
+                    <h1 class="text-center text-capitalize">{{ $project->name }}</h1>
+                </div>
+                <div class="col-6 px-5 mt-5">
+                    <h2>Info:</h2>
+                    <ul class="list-unstyled">
+                        <li>
+                            <i class="fa-solid fa-heart"></i>
+                            <span>Nome:</span> {{ $project->name }}
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-calendar"></i>
+                            <span>Data di inzio progetto:</span> {{ $project->start_date }}
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-calendar"></i>
+                            <span>Data di fine progetto:</span> {{ $project->end_date }}
+                        </li>
+                    </ul>
+                    <h2>Descrizione:</h2>
+                    <p>{{ $project->description }}</p>
+
+                    <h2>Caratteristiche:</h2>
+                    <ul class="list-unstyled">
+                        <li>
+                            <i class="fa-solid fa-code"></i>
+                            <span>Tecnologia:</span>
                             @forelse ($project->technology as $technology)
                                 {{ $technology->name . ',' }}
                             @empty
-                                Non è stata assegnata nessuna tecnologia...
+                                Nessuno
                             @endforelse
-                        </p>
-                        <p class="card-text">Data di inizio: {{ $project->start_date }}</p>
-                        <p class="card-text">Data di fine: {{ $project->end_date }}</p>
-                        <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}"
-                            class="btn btn-primary">Modifica progetto</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-file-code"></i>
+                            <span>Tipo:</span> {{ $project->type->name }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-6 px-5 mt-5 d-flex flex-column justify-content-between">
+                    <div class="img-card">
+                        @if ($project->image != null)
+                            <img src="{{ asset('/storage/') . $project->image }}" alt=""
+                                class="img-fluid w-100 h-100">
+                        @else
+                            <img src="{{ '/img/sfondo.jpg' }}" alt="...img" class="img-fluid w-100 h-100">
+                        @endif
+                    </div>
+                    <div class="d-flex justify-content-end px-5 mt-5">
+                        <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-sm btn-success mx-2 ">
+                            <i class="fa-solid fa-pen-to-square fa-xs"></i>
+                            <span>Modifica</span>
+                        </a>
+                        <button class="btn btn-sm btn-success delete-button" data-bs-toggle="modal"
+                            data-bs-target="#modal_delete" data-slug="{{ $project->id }}">
+                            <i class="fa-solid fa-trash-can fa-xs"></i> Elimina
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    @include('partials.modal_delete')
 @endsection

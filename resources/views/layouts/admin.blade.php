@@ -97,28 +97,7 @@
 
         <main>
             <div class="d-flex h-100">
-                <div class="sidebar">
-                    <ul class=" list-unstyled ">
-                        <li>
-                            <a class="sidebarLink" href="{{ route('admin.dashboard') }}">
-                                <i class="fa-solid fa-gauge fa-lg" style="color: #FFf;"></i>
-                                Dashboard
-                            </a>
-                        </li>
-                        <li>
-                            <a class="sidebarLink" href="{{ route('admin.projects.index') }}">
-                                <i class="fa-solid fa-folder" style="color: #FFf;"></i>
-                                Projects
-                            </a>
-                        </li>
-                        <li>
-                            <a class="sidebarLink" href="{{ route('admin.types.index') }}">
-                                <i class="fa-solid fa-list" style="color: #FFf;"></i>
-                                Type
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                @include('partials.sidebar')
                 <div class="right-container">
                     @yield('content')
                 </div>
