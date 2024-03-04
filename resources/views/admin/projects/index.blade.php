@@ -31,22 +31,22 @@
                                     <td>{{ $project->type ? $project->type->name : 'Nessuno' }}</td>
                                     <td>{{ Str::limit($project->description, 20, '(...)') }}</td>
                                     <td class="d-flex">
-                                        <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}"
+                                        <a href="{{ route('admin.projects.show', ['project' => $project->slug]) }}"
                                             class="btn btn-sm btn-success">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
-                                        <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}"
+                                        <a href="{{ route('admin.projects.edit', ['project' => $project->slug]) }}"
                                             class="btn btn-sm btn-success mx-2"><i class="fas fa-edit"></i></a>
                                         {{-- <form action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE') --}}
+                                        {{-- </form> --}}
                                         <button class="btn btn-sm btn-success delete-button" data-bs-toggle="modal"
-                                            data-bs-target="#modal_delete" data-slug="{{ $project->slug }}">
+                                            data-bs-target="#modal_delete">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
-                                        {{-- </form> --}}
-                                        @include('partials.modal_delete')
+                                        @include('admin.partials.modal_delete')
                                     </td>
                                 </tr>
                             @endforeach

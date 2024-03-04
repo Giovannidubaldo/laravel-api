@@ -6,12 +6,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h4 id="custom-messate">Sei sicuro di voler cancellare questo progetto<span
+                <h4 id="custom-message">Sei sicuro di voler cancellare questo progetto<span
                         id="custom-message-modal"></span>?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm" data-bs-dismiss="modal">Chiudi</button>
-                <form id="form-delete" action="" method="post">
+                <form id="form-delete" action="{{ route('admin.projects.destroy', ['project' => $project->slug]) }}"
+                    method="post">
                     @csrf
                     @method('DELETE')
 

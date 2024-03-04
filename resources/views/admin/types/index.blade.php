@@ -26,7 +26,7 @@
                                     <td>{{ $type->slug }}</td>
                                     <td>{{ count($type->projects) }}</td>
                                     <td>
-                                        <a href="{{ route('admin.types.show', ['type' => $type->id]) }}"
+                                        <a href="{{ route('admin.types.show', ['type' => $type->slug]) }}"
                                             class="btn btn-sm btn-success"> <i class="fa-solid fa-eye"></i>
                                         </a>
                                     </td>

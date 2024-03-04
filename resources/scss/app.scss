@@ -1,5 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 
+header {
+    background-color: #161d20;
+    color: #198754 !important;
+}
+
 main {
     height: calc(100vh - 70px);
 

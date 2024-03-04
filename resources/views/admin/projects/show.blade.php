@@ -53,7 +53,7 @@
                         @endif
                     </div>
                     <div class="d-flex justify-content-end px-5 mt-5">
-                        <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-sm btn-success mx-2 ">
+                        <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-sm btn-success mx-2 ">
                             <i class="fa-solid fa-pen-to-square fa-xs"></i>
                             <span>Modifica</span>
                         </a>
@@ -66,5 +66,5 @@
             </div>
         </div>
     </section>
-    @include('partials.modal_delete')
+    @include('admin.partials.modal_delete')
 @endsection
