@@ -46,10 +46,16 @@
                 <div class="col-6 px-5 mt-5 d-flex flex-column justify-content-between">
                     <div class="img-card">
                         @if ($project->image != null)
-                            <img src="{{ asset('/storage/') . $project->image }}" alt=""
-                                class="img-fluid w-100 h-100">
+                            @if (Str::contains($project->img, 'https'))
+                                <img src="{{ $project->image }}" alt="{{ $project->name }}" class="img-fluid h-100 w-100">
+                            @else
+                                <img src="{{ asset('/storage/' . $project->image) }}" alt="{{ $project->name }}"
+                                    class="img-fluid h-100 w-100">
+                            @endif
                         @else
-                            <img src="{{ '/img/sfondo.jpg' }}" alt="...img" class="img-fluid w-100 h-100">
+                            <img class="img-fluid h-100 w-100"
+                                src="https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg"
+                                alt="">
                         @endif
                     </div>
                     <div class="d-flex justify-content-end px-5 mt-5">

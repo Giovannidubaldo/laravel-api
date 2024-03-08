@@ -20,7 +20,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::orderBy('id', 'desc')->get();
+        $projects = Project::orderBy('updated_at', 'desc')->get();
 
         return view('admin.projects.index', compact('projects'));
     }
@@ -55,9 +55,8 @@ class ProjectController extends Controller
             $form_project['image'] = $path;
         }
 
-        $slug = Str::slug($form_project['name'], '-');
-        $form_project['slug'] = $slug;
         $new_project->fill($form_project);
+        $new_project->slug = Str::slug($form_project['name'], '-');
         $new_project->save();
 
         if ($request->has('technologies')) {
@@ -131,9 +130,6 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        if ($project->image != null) {
-            Storage::delete($project->image);
-        }
 
         $project->delete();
 
